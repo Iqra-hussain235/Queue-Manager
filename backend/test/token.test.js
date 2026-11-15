@@ -3,6 +3,7 @@ import assert from "node:assert/strict";
 
 process.env.DATABASE_URL ||= "postgres://postgres:postgres@localhost:5432/queue_manager_test";
 process.env.JWT_SECRET ||= "unit-test-secret-that-is-at-least-thirty-two-characters";
+process.env.NODE_ENV ||= "test";
 
 const [{ default: TokenService }, { default: sequelize }] = await Promise.all([
   import("../src/modules/tokens/token.service.js"),

@@ -3,6 +3,7 @@ import assert from "node:assert/strict";
 
 process.env.DATABASE_URL ||= "postgres://postgres:postgres@localhost:5432/queue_manager_test";
 process.env.JWT_SECRET ||= "unit-test-secret-that-is-at-least-thirty-two-characters";
+process.env.NODE_ENV ||= "test";
 
 const { default: AnalyticsService } = await import("../src/modules/analytics/analytics.service.js");
 

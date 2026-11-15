@@ -145,11 +145,13 @@ The backend test suite includes analytics calculations. Database integration che
 
 ## Deployment
 
-- Deploy PostgreSQL and configure `DATABASE_URL`.
-- Set a unique `JWT_SECRET`, `NODE_ENV=production`, `PORT`, and the frontend origin in `FRONTEND_URL`.
-- Run backend migrations before starting the API: `npm run db:migrate`.
-- Set `NEXT_PUBLIC_API_URL` to the deployed API base URL, then build and start the frontend with `npm run build` and `npm start`.
-- Use HTTPS, restrict CORS to the production frontend origin, and keep `.env` files out of source control.
+- **Render backend:** set the service root directory to `backend`, build command to `npm ci`, and start command to `npm start`. The server binds to `0.0.0.0` and uses Render's assigned `PORT`.
+- **Render environment:** configure `NODE_ENV=production`, Render's `PORT`, the Neon `DATABASE_URL`, a random `JWT_SECRET` of at least 32 characters, `JWT_EXPIRES_IN=12h`, and `FRONTEND_URL=https://queuemanager-liart.vercel.app`.
+- Use Neon’s direct or pooled connection string and set its query parameter to `sslmode=verify-full`. The installed `pg` 8.23.1 / `pg-connection-string` 2.14.1 stack enables TLS and verifies the server certificate for this mode. Production startup rejects local database URLs, missing production settings, and other SSL modes.
+- **Migrations:** review the target database and back it up first. Then run `npm run db:migrate` from the backend service shell (or a one-off job) before deploying code that needs the schema. The command uses `.sequelizerc` and `DATABASE_URL`; migrations are deliberately not run automatically during server startup. Check applied migrations with `npx sequelize-cli db:migrate:status`.
+- **Vercel frontend:** set `NEXT_PUBLIC_API_URL=https://queue-manager-1.onrender.com/api/v1` for the production deployment, then redeploy. Production builds fail if this variable is missing instead of silently targeting localhost.
+- `GET /api/v1/health` is the process liveness check; `GET /api/v1/health/ready` also checks the database. CORS allows the configured `FRONTEND_URL`; `http://localhost:3000` is allowed only in development.
+- Generate a JWT secret with `node -e "console.log(require('node:crypto').randomBytes(48).toString('base64url'))"`. Never commit `.env` files or put credentials in the frontend.
 
 ## Screenshots
 

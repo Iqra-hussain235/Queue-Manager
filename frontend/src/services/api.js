@@ -2,8 +2,15 @@
 
 import axios from "axios";
 
+const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL
+  || (process.env.NODE_ENV === "development" ? "http://localhost:4000/api/v1" : undefined);
+
+if (!apiBaseUrl) {
+  throw new Error("NEXT_PUBLIC_API_URL must be set outside development");
+}
+
 const api = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_API_URL || "http://localhost:4000/api/v1",
+  baseURL: apiBaseUrl.replace(/\/+$/, ""),
   headers: { "Content-Type": "application/json" },
 });
 
