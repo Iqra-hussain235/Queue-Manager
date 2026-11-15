@@ -7,7 +7,7 @@ process.env.PORT = "4000";
 process.env.DATABASE_URL = "postgresql://test:test@db.example.com/queue_manager?sslmode=verify-full";
 process.env.JWT_SECRET = "production-test-secret-that-is-at-least-thirty-two-characters";
 process.env.JWT_EXPIRES_IN = "12h";
-process.env.FRONTEND_URL = "https://queuemanager-liart.vercel.app";
+process.env.FRONTEND_URL = "https://queuemanager-liart.vercel.app/";
 
 const [{ default: app }, { default: sequelize }] = await Promise.all([
   import("../src/app.js"),
