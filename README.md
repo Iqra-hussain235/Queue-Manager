@@ -1,5 +1,6 @@
 # QueueFlow
 
+
 A full-stack queue management application for managers to organize service queues, issue tokens, control service flow, and review operational analytics.
 
 ## Features
@@ -153,6 +154,6 @@ The backend test suite includes analytics calculations. Database integration che
 - `GET /api/v1/health` is the process liveness check; `GET /api/v1/health/ready` also checks the database. CORS allows the configured `FRONTEND_URL`; `http://localhost:3000` is allowed only in development.
 - Generate a JWT secret with `node -e "console.log(require('node:crypto').randomBytes(48).toString('base64url'))"`. Never commit `.env` files or put credentials in the frontend.
 
-## Screenshots
+## Live Link
+https://queuemanager-liart.vercel.app/
 
-Add deployment or local screenshots here.
