@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root { color-scheme: light; }
+* { box-sizing: border-box; }
+body { margin: 0; background: #f5f7fb; color: #172033; font-family: Arial, Helvetica, sans-serif; }
+button, input, textarea, select { font: inherit; }
+button:disabled { cursor: not-allowed; opacity: .55; }
+a { color: inherit; text-decoration: none; }
+.card { border: 1px solid #e8ecf3; border-radius: 16px; background: white; box-shadow: 0 8px 26px rgba(28,43,74,.045); }
+.field { width: 100%; border: 1px solid #dfe4ed; border-radius: 9px; background: white; padding: 10px 12px; color: #172033; outline: none; }
+.field:focus { border-color: #3568e8; box-shadow: 0 0 0 3px rgba(53,104,232,.12); }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; border: 0; border-radius: 9px; padding: 10px 15px; font-size: 14px; font-weight: 650; transition: .15s ease; cursor: pointer; }
+.btn-primary { background: #3568e8; color: white; }
+.btn-primary:hover { background: #2857cd; }
+.btn-secondary { background: #eef2f8; color: #273650; }
+.btn-secondary:hover { background: #e2e8f2; }
+.btn-danger { background: #fff0ef; color: #c33f38; }
+.btn-danger:hover { background: #ffe3e0; }
+.badge { display: inline-flex; align-items: center; border-radius: 999px; padding: 4px 9px; font-size: 11px; font-weight: 700; }
+.badge-WAITING { background: #fff4d8; color: #936600; }
+.badge-CALLED { background: #e8efff; color: #315fc2; }
+.badge-SERVING { background: #e2f5ee; color: #177553; }
+.badge-COMPLETED { background: #edf0f5; color: #57647a; }
+.badge-CANCELLED { background: #fff0ef; color: #bf4a42; }
+.sidebar-link { display: flex; align-items: center; gap: 12px; border-radius: 9px; padding: 11px 12px; color: #b7c1d5; font-size: 14px; }
+.sidebar-link:hover, .sidebar-link.active { background: #273449; color: #fff; }
+@media (max-width: 760px) { .sidebar-link span { display: none; } }
