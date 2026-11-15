@@ -1,9 +1,23 @@
+
 const path = require("node:path");
 
-require("dotenv").config({ path: path.resolve(__dirname, "../../.env") });
+require("dotenv").config({
+  path: path.resolve(__dirname, "../../.env"),
+});
+
+const databaseConfig = {
+  use_env_variable: "DATABASE_URL",
+  dialect: "postgres",
+  dialectOptions: {
+    ssl: {
+      require: true,
+      rejectUnauthorized: true,
+    },
+  },
+};
 
 module.exports = {
-  development: { use_env_variable: "DATABASE_URL", dialect: "postgres" },
-  test: { use_env_variable: "DATABASE_URL", dialect: "postgres" },
-  production: { use_env_variable: "DATABASE_URL", dialect: "postgres" },
+  development: databaseConfig,
+  test: databaseConfig,
+  production: databaseConfig,
 };
